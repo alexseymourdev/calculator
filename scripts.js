@@ -12,6 +12,8 @@ var objMaths = document.querySelector(".maths");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
 // console.log(objClear);
+var objEquals = document.querySelector(".equals");
+// console.log(objEquals);
 
 
 /*----- Event Listeners -----*/
@@ -26,6 +28,7 @@ for(counter = 0; counter < arrOperators.length; counter++){
     objOperator.addEventListener("click", preview);
 }
 objClear.addEventListener("click", clear);
+objEquals.addEventListener("click", equals);
 
 /*----- Functions -----*/
 function preview(event){
@@ -79,6 +82,12 @@ function clear(event){
     operator = "";
     objPreview.value = "";
     objMaths.value = "";
+}
+
+
+function equals(){
+    var sum = calculator(number1,number2,operator);
+    objMaths.value = sum;
 }
 
 //Adding a validation function for the numbers
