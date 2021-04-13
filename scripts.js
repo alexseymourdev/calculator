@@ -8,6 +8,8 @@ var arrOperators = document.querySelectorAll(".operator");
 // console.log(arrOperators);
 var objPreview = document.querySelector(".preview");
 // console.log(objPreview);
+var objPrevious = document.querySelector(".previous");
+// console.log(objPreview);
 var objMaths = document.querySelector(".maths");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
