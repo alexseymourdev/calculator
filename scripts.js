@@ -18,6 +18,8 @@ var objEquals = document.querySelector(".equals");
 // console.log(objEquals);
 var objError = document.querySelector(".error");
 // console.log(objError);
+var objDecimal = document.querySelector(".decimal");
+// console.log(objError);
 
 
 /*----- Event Listeners -----*/
@@ -127,17 +129,20 @@ function calculator(number1,number2,operator){
     //if number1 is not a number
     if(!isValidNumber(number1)){
         //end the function here and pass the message below.
-        return 'Argument 1 must be a number';
+        objError.innerHTML = 'Argument 1 must be a number';
+        return;
     }
     //if number 2 is not a number
     if(!isValidNumber(number2)){
         //end the function here and pass the message below.
-        return 'Argument 2 must be a number';
+        objError.innerHTML = 'Argument 2 must be a number';
+        return;
     }
     // if the operator does not equal + - * / %
     if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
         //end the function here and pass the message below.
-        return 'Argument 3 must be an arithmatic operator';
+        objError.innerHTML = 'Argument 3 must be an arithmatic operator';
+        return;
     }
     //all fo the validation has passed so we need to do maths
     var sum;
