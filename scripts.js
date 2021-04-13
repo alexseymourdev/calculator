@@ -59,6 +59,7 @@ function preview(event){
         if(number2){
             number1 = calculator(number1,number2,operator);
             number2 = "";
+            objPrevious.value = objPreview.value;
             objMaths.value = "";
         }
         if(number1){
@@ -70,6 +71,7 @@ function preview(event){
     } else {
         if(blnEquals){
             number1 = "";
+            objPrevious.value = "";
             blnEquals = false;
         }
         if(operator){
@@ -104,7 +106,9 @@ function clear(event){
 
 function equals(){
     var sum = calculator(number1,number2,operator);
-    objMaths.value = sum;
+    objMaths.value = "";
+    objPrevious.value = objPreview.value;
+    objPreview.value = sum;
     blnEquals = true;
     number1 = sum;
     number2 = "";
