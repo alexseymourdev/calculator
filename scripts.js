@@ -32,7 +32,7 @@ objEquals.addEventListener("click", equals);
 
 /*----- Functions -----*/
 function preview(event){
-    console.log(blnEqulas);
+    console.log(blnEquals);
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
