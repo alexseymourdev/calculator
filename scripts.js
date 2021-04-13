@@ -35,6 +35,7 @@ for(counter = 0; counter < arrOperators.length; counter++){
 }
 objClear.addEventListener("click", clear);
 objEquals.addEventListener("click", equals);
+objDecimal.addEventListener("click", preview);
 
 /*----- Functions -----*/
 function preview(event){
@@ -55,7 +56,7 @@ function preview(event){
             dataType = 'number'
         break;
     }
-    // console.log(currentItem);
+    console.log(currentItem);
     // console.log(dataType);
     if(dataType == 'operator'){
         if(blnEquals){
@@ -82,23 +83,51 @@ function preview(event){
         }
         if(operator){
             if(number2){
-                number2 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number2 += currentItem;
+                    }
+                } else {
+                    number2 += currentItem;
+                }
             } else {
-                number2 = currentItem;
+                if(currentItem == '.'){
+                    number2 = '0.';
+                } else {
+                    number2 = currentItem;
+                }
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
             var sum = calculator(number1,number2,operator);
             objMaths.value = sum;
         } else {
             if(number1){
-                number1 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number1 += currentItem;
+                    }
+                } else {
+                    number1 += currentItem;
+                }
             } else {
-                number1 = currentItem;
+                if(currentItem == '.'){
+                    number1 = '0.';
+                } else {
+                    number1 = currentItem;
+                }
             }
             strMessage = number1;
         }
     }
     objPreview.value = strMessage;
+}
+
+function hasDecimal(number){
+    if(number.indexOf('.') !== -1){
+        objError.innerHTML = 'You can only have one decimal place per number';
+        return true;
+    }
+    return false;
 }
 
 function clear(event){

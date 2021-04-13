@@ -29,8 +29,8 @@ input{
     width:200px;
 }
 .calculatorWrapper{
-    max-width:900px;
-    margin:0 auto;
+    /* max-width:900px; */
+    /* margin:0 auto; */
     min-height:200px;
 }
 .leftSide,
