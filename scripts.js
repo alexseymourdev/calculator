@@ -16,6 +16,8 @@ var objClear = document.querySelector(".clear");
 // console.log(objClear);
 var objEquals = document.querySelector(".equals");
 // console.log(objEquals);
+var objError = document.querySelector(".error");
+// console.log(objError);
 
 
 /*----- Event Listeners -----*/
@@ -34,7 +36,7 @@ objEquals.addEventListener("click", equals);
 
 /*----- Functions -----*/
 function preview(event){
-    console.log(blnEquals);
+    // console.log(blnEquals);
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
@@ -51,7 +53,7 @@ function preview(event){
         break;
     }
     // console.log(currentItem);
-    console.log(dataType);
+    // console.log(dataType);
     if(dataType == 'operator'){
         if(blnEquals){
             blnEquals = false;
@@ -66,7 +68,8 @@ function preview(event){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
         } else {
-            console.log('You cannot set an operator without a number being set');
+            objError.innerHTML = 'You cannot set an operator without a number being set';
+            return;
         }
     } else {
         if(blnEquals){
