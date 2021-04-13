@@ -73,3 +73,6 @@ input{
 .fill-white{
     fill:white;
 }
+.error{
+    color:red;
+}
