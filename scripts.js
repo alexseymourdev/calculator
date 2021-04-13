@@ -8,6 +8,8 @@ var arrOperators = document.querySelectorAll(".operator");
 // console.log(arrOperators);
 var objPreview = document.querySelector(".preview");
 // console.log(objPreview);
+var objPrevious = document.querySelector(".previous");
+console.log(objPrevious);
 var objMaths = document.querySelector(".maths");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
@@ -53,6 +55,11 @@ function preview(event){
     if(dataType == 'operator'){
         if(blnEquals){
             blnEquals = false;
+        }
+        if(number2){
+            number1 = calculator(number1,number2,operator);
+            number2 = "";
+            objMaths.value = "";
         }
         if(number1){
             operator = currentItem;
