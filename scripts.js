@@ -1,5 +1,5 @@
 /*----- Variables -----*/
-let number1 = "", number2 = "", operator = "";
+let number1 = "", number2 = "", operator = "", blnEquals = false;
 
 /*---- Selecting elements ----*/
 var arrNumbers = document.querySelectorAll(".number");
@@ -32,6 +32,7 @@ objEquals.addEventListener("click", equals);
 
 /*----- Functions -----*/
 function preview(event){
+    console.log(blnEqulas);
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
@@ -76,8 +77,6 @@ function preview(event){
     objPreview.value = strMessage;
 }
 
-//Alex is cool
-
 function clear(event){
     number1 = "";
     number2 = "";
@@ -90,6 +89,7 @@ function clear(event){
 function equals(){
     var sum = calculator(number1,number2,operator);
     objMaths.value = sum;
+    blnEquals = true;
 }
 
 //Adding a validation function for the numbers
