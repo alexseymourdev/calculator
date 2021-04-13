@@ -43,6 +43,7 @@ function preview(event){
     var currentItem = event.target.innerHTML;
     var dataType;
     var strMessage;
+    objError.innerHTML = "";
     switch(currentItem){
         case '*':
         case '/':
@@ -113,13 +114,15 @@ function clear(event){
 
 function equals(){
     var sum = calculator(number1,number2,operator);
-    objMaths.value = "";
-    objPrevious.value = objPreview.value;
-    objPreview.value = sum;
-    blnEquals = true;
-    number1 = sum;
-    number2 = "";
-    operator = "";
+    if(sum){
+        objMaths.value = "";
+        objPrevious.value = objPreview.value;
+        objPreview.value = sum;
+        blnEquals = true;
+        number1 = sum;
+        number2 = "";
+        operator = "";
+    }
 }
 
 //Adding a validation function for the numbers
@@ -128,22 +131,25 @@ function isValidNumber(number){
     return !isNaN(number);
 }
 function calculator(number1,number2,operator){
+    // console.log(number1);
+    // console.log(number2);
+    // console.log(operator);
     //if number1 is not a number
-    if(!isValidNumber(number1)){
+    if(!isValidNumber(number1) || !number1){
         //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 1 must be a number';
-        return;
-    }
-    //if number 2 is not a number
-    if(!isValidNumber(number2)){
-        //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 2 must be a number';
+        objError.innerHTML = 'Number 1 must be set';
         return;
     }
     // if the operator does not equal + - * / %
     if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
         //end the function here and pass the message below.
-        objError.innerHTML = 'Argument 3 must be an arithmatic operator';
+        objError.innerHTML = 'You need to set an operator';
+        return;
+    }
+    //if number 2 is not a number
+    if(!isValidNumber(number2) || !number2){
+        //end the function here and pass the message below.
+        objError.innerHTML = 'Number 2 must be set';
         return;
     }
     //all fo the validation has passed so we need to do maths
