@@ -54,6 +54,11 @@ function preview(event){
         if(blnEquals){
             blnEquals = false;
         }
+        if(number2){
+            number1 = calculator(number1,number2,operator);
+            number2 = "";
+            objMaths.value = "";
+        }
         if(number1){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
