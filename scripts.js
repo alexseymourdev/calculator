@@ -51,6 +51,9 @@ function preview(event){
     // console.log(currentItem);
     console.log(dataType);
     if(dataType == 'operator'){
+        if(blnEquals){
+            blnEquals = false;
+        }
         if(number1){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
@@ -58,6 +61,10 @@ function preview(event){
             console.log('You cannot set an operator without a number being set');
         }
     } else {
+        if(blnEquals){
+            number1 = "";
+            blnEquals = false;
+        }
         if(operator){
             if(number2){
                 number2 += currentItem;
@@ -90,6 +97,9 @@ function equals(){
     var sum = calculator(number1,number2,operator);
     objMaths.value = sum;
     blnEquals = true;
+    number1 = sum;
+    number2 = "";
+    operator = "";
 }
 
 //Adding a validation function for the numbers
