@@ -9,13 +9,17 @@ var arrOperators = document.querySelectorAll(".operator");
 var objPreview = document.querySelector(".preview");
 // console.log(objPreview);
 var objPrevious = document.querySelector(".previous");
-console.log(objPrevious);
+// console.log(objPrevious);
 var objMaths = document.querySelector(".maths");
 // console.log(objMaths);
 var objClear = document.querySelector(".clear");
 // console.log(objClear);
 var objEquals = document.querySelector(".equals");
 // console.log(objEquals);
+var objError = document.querySelector(".error");
+// console.log(objError);
+var objDecimal = document.querySelector(".decimal");
+console.log(objDecimal);
 
 
 /*----- Event Listeners -----*/
@@ -31,10 +35,11 @@ for(counter = 0; counter < arrOperators.length; counter++){
 }
 objClear.addEventListener("click", clear);
 objEquals.addEventListener("click", equals);
+objDecimal.addEventListener("click", preview);
 
 /*----- Functions -----*/
 function preview(event){
-    console.log(blnEquals);
+    // console.log(blnEquals);
     // console.log(event.target.innerHTML);
     var currentItem = event.target.innerHTML;
     var dataType;
@@ -51,7 +56,7 @@ function preview(event){
         break;
     }
     // console.log(currentItem);
-    console.log(dataType);
+    // console.log(dataType);
     if(dataType == 'operator'){
         if(blnEquals){
             blnEquals = false;
@@ -66,7 +71,8 @@ function preview(event){
             operator = currentItem;
             strMessage = number1 + ' ' + operator;
         } else {
-            console.log('You cannot set an operator without a number being set');
+            objError.innerHTML = 'You cannot set an operator without a number being set';
+            return;
         }
     } else {
         if(blnEquals){
@@ -76,18 +82,38 @@ function preview(event){
         }
         if(operator){
             if(number2){
-                number2 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number2)){
+                        number2 += currentItem;
+                    }
+                } else {
+                    number2 += currentItem;
+                }
             } else {
-                number2 = currentItem;
+                if(currentItem == '.'){
+                    number2 = '0.';
+                } else {
+                    number2 = currentItem;
+                }
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
             var sum = calculator(number1,number2,operator);
             objMaths.value = sum;
         } else {
             if(number1){
-                number1 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number1 += currentItem;
+                    }
+                } else {
+                    number1 += currentItem;
+                }
             } else {
-                number1 = currentItem;
+                if(currentItem == '.'){
+                    number1 = '0.';
+                } else {
+                    number1 = currentItem;
+                }
             }
             strMessage = number1;
         }
@@ -101,18 +127,30 @@ function clear(event){
     operator = "";
     objPreview.value = "";
     objMaths.value = "";
+    objPrevious.value = "";
+    objError.innerHTML = "";
 }
 
 
 function equals(){
     var sum = calculator(number1,number2,operator);
-    objMaths.value = "";
-    objPrevious.value = objPreview.value;
-    objPreview.value = sum;
-    blnEquals = true;
-    number1 = sum;
-    number2 = "";
-    operator = "";
+    if(sum){
+        objMaths.value = "";
+        objPrevious.value = objPreview.value;
+        objPreview.value = sum;
+        blnEquals = true;
+        number1 = sum;
+        number2 = "";
+        operator = "";
+    }
+}
+
+function hasDecimal(number){
+    if(number.indexOf('.') !== -1){
+        objError.innerHTML = 'You can only have one decimal place per number';
+        return true;
+    }
+    return false;
 }
 
 //Adding a validation function for the numbers
@@ -124,17 +162,20 @@ function calculator(number1,number2,operator){
     //if number1 is not a number
     if(!isValidNumber(number1)){
         //end the function here and pass the message below.
-        return 'Argument 1 must be a number';
-    }
-    //if number 2 is not a number
-    if(!isValidNumber(number2)){
-        //end the function here and pass the message below.
-        return 'Argument 2 must be a number';
+        objError.innerHTML = 'Number 1 must be a number';
+        return;
     }
     // if the operator does not equal + - * / %
     if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
         //end the function here and pass the message below.
-        return 'Argument 3 must be an arithmatic operator';
+        objError.innerHTML = 'You must use an operator';
+        return;
+    }
+    //if number 2 is not a number
+    if(!isValidNumber(number2)){
+        //end the function here and pass the message below.
+        objError.innerHTML = 'Number 2 must be a number';
+        return;
     }
     //all fo the validation has passed so we need to do maths
     var sum;
