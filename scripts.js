@@ -115,6 +115,24 @@ var objCalculator = {
             this.number2 = "";
             this.operator = "";
         }
+    },
+    processNumber:function(number,character){
+        if(number){
+            if(character == '.'){
+                if(!hasDecimal(number1)){
+                    number += character;
+                }
+            } else {
+                number += character;
+            }
+        } else {
+            if(character == '.'){
+                number = '0.';
+            } else {
+                number = character;
+            }
+        }
+        return number;
     }
 };
 objCalculator.init();
