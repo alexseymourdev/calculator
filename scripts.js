@@ -40,7 +40,9 @@ var objCalculator = {
             });
         }
         this.objClear.addEventListener("click", this.clear);
-        this.objEquals.addEventListener("click", this.equals);
+        this.objEquals.addEventListener("click", function(event){
+            _self.equals();
+        });
         this.objDecimal.addEventListener("click", function(event){
             currentItem = event.target.innerHTML;
             _self.preview(currentItem);
@@ -117,7 +119,7 @@ var objCalculator = {
         this.objError.innerHTML = "";
     },
     equals:function(){
-        var sum = calculator(this.number1,this.number2,this.operator);
+        var sum = this.calculator(this.number1,this.number2,this.operator);
         if(sum){
             this.objMaths.value = "";
             this.objPrevious.value = this.objPreview.value;
@@ -151,10 +153,6 @@ var objCalculator = {
         return !isNaN(number);
     },
     calculator:function(number1,number2,operator){
-        // console.log(number1);
-        // console.log(number2);
-        // console.log(operator);
-        //if number1 is not a number
         if(!this.isValidNumber(number1) || !number1){
             //end the function here and pass the message below.
             objError.innerHTML = 'Number 1 must be set';
