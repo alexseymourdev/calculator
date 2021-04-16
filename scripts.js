@@ -1,4 +1,4 @@
-/*----- Variables -----*/
+/*----- Global Variables -----*/
 let number1 = "", number2 = "", operator = "", blnEquals = false;
 
 /*---- Selecting elements ----*/
@@ -19,7 +19,7 @@ var objEquals = document.querySelector(".equals");
 var objError = document.querySelector(".error");
 // console.log(objError);
 var objDecimal = document.querySelector(".decimal");
-// console.log(objError);
+// console.log(objDecimal);
 
 
 /*----- Event Listeners -----*/
@@ -59,9 +59,7 @@ function preview(event){
     console.log(currentItem);
     // console.log(dataType);
     if(dataType == 'operator'){
-        if(blnEquals){
-            blnEquals = false;
-        }
+        blnEquals = false;
         if(number2){
             number1 = calculator(number1,number2,operator);
             number2 = "";
