@@ -1,4 +1,5 @@
 var objCalculator = {
+    _self:this,
     number1:"",
     number2:"",
     operator:"",
@@ -21,10 +22,17 @@ var objCalculator = {
     },
     addEventListeners:function(){
         /*----- Event Listeners -----*/
+        _self = this;
         for(counter = 0; counter < this.arrNumbers.length; counter++){
             // console.log(arrNumbers[counter]);
             objNumber = this.arrNumbers[counter];
-            objNumber.addEventListener("click", this.preview);
+            objNumber.addEventListener("click", function(event){
+                console.log(event);
+                console.log(this);
+                console.log(_self);
+                currentItem = event.target.innerHTML;
+                _self.preview(currentItem);
+            });
         }
         for(counter = 0; counter < this.arrOperators.length; counter++){
             // console.log(arrNumbers[counter]);
@@ -35,12 +43,13 @@ var objCalculator = {
         this.objEquals.addEventListener("click", this.equals);
         this.objDecimal.addEventListener("click", this.preview);
     },
-    preview:function(event){
+    preview:function(currentItem){
         // console.log(blnEquals);
         // console.log(event.target.innerHTML);
-        var currentItem = event.target.innerHTML;
+        // var currentItem = event.target.innerHTML;
         var dataType;
         var strMessage;
+        // console.log(this);
         this.objError.innerHTML = "";
         switch(currentItem){
             case '*':
