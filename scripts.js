@@ -27,9 +27,6 @@ var objCalculator = {
             // console.log(arrNumbers[counter]);
             objNumber = this.arrNumbers[counter];
             objNumber.addEventListener("click", function(event){
-                console.log(event);
-                console.log(this);
-                console.log(_self);
                 currentItem = event.target.innerHTML;
                 _self.preview(currentItem);
             });
@@ -37,11 +34,17 @@ var objCalculator = {
         for(counter = 0; counter < this.arrOperators.length; counter++){
             // console.log(arrNumbers[counter]);
             objOperator = this.arrOperators[counter];
-            objOperator.addEventListener("click", this.preview);
+            objOperator.addEventListener("click", function(event){
+                currentItem = event.target.innerHTML;
+                _self.preview(currentItem);
+            });
         }
         this.objClear.addEventListener("click", this.clear);
         this.objEquals.addEventListener("click", this.equals);
-        this.objDecimal.addEventListener("click", this.preview);
+        this.objDecimal.addEventListener("click", function(event){
+            currentItem = event.target.innerHTML;
+            _self.preview(currentItem);
+        });
     },
     preview:function(currentItem){
         // console.log(blnEquals);
