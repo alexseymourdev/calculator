@@ -36,7 +36,57 @@ var objCalculator = {
         // objDecimal.addEventListener("click", this.preview);
     },
     preview:function(event){
-        console.log(event);
+        // console.log(blnEquals);
+        // console.log(event.target.innerHTML);
+        var currentItem = event.target.innerHTML;
+        var dataType;
+        var strMessage;
+        this.objError.innerHTML = "";
+        switch(currentItem){
+            case '*':
+            case '/':
+            case '-':
+            case '+':
+                dataType = 'operator';
+            break;
+            default:
+                dataType = 'number'
+            break;
+        }
+        console.log(currentItem);
+        // console.log(dataType);
+        if(dataType == 'operator'){
+            this.blnEquals = false;
+            if(number2){
+                this.number1 = calculator(this.number1,this.number2,this.operator);
+                this.number2 = "";
+                this.objPrevious.value = this.objPreview.value;
+                this.objMaths.value = "";
+            }
+            if(this.number1){
+                this.operator = currentItem;
+                strMessage = this.number1 + ' ' + this.operator;
+            } else {
+                this.objError.innerHTML = 'You cannot set an operator without a number being set';
+                return;
+            }
+        } else {
+            if(this.blnEquals){
+                this.number1 = "";
+                this.objPrevious.value = "";
+                this.blnEquals = false;
+            }
+            if(operator){
+                this.number2 = processNumber(this.number2,currentItem);
+                strMessage = this.number1 + ' ' + this.operator + ' ' + this.number2;
+                var sum = calculator(this.number1,this.number2,this.operator);
+                this.objMaths.value = sum;
+            } else {
+                this.number1 = processNumber(this.number1,currentItem);
+                this.strMessage = this.number1;
+            }
+        }
+        this.objPreview.value = strMessage;
     }
 };
 objCalculator.init();
