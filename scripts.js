@@ -133,6 +133,10 @@ var objCalculator = {
             }
         }
         return number;
+    },
+    isValidNumber:function(number){
+        //We are using a double negative as inNaN returns false on valid numbers
+        return !isNaN(number);
     }
 };
 objCalculator.init();
