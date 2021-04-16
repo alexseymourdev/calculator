@@ -55,7 +55,7 @@ var objCalculator = {
         var dataType;
         var strMessage;
         // console.log(this);
-        this.objError.innerHTML = "";
+        this.errorMessage("");
         switch(currentItem){
             case '*':
             case '/':
@@ -67,7 +67,7 @@ var objCalculator = {
                 dataType = 'number'
             break;
         }
-        console.log(currentItem);
+        // console.log(currentItem);
         // console.log(dataType);
         if(dataType == 'operator'){
             this.blnEquals = false;
@@ -81,7 +81,7 @@ var objCalculator = {
                 this.operator = currentItem;
                 strMessage = this.number1 + ' ' + this.operator;
             } else {
-                this.objError.innerHTML = 'You cannot set an operator without a number being set';
+                this.errorMessage('You cannot set an operator without a number being set');
                 return;
             }
         } else {
@@ -104,7 +104,7 @@ var objCalculator = {
     },
     hasDecimal:function(number){
         if(number.indexOf('.') !== -1){
-            this.objError.innerHTML = 'You can only have one decimal place per number';
+            this.errorMessage('You can only have one decimal place per number');
             return true;
         }
         return false;
@@ -116,7 +116,7 @@ var objCalculator = {
         this.objPrevious.value = "";
         this.objPreview.value = "";
         this.objMaths.value = "";
-        this.objError.innerHTML = "";
+        this.errorMessage("");
     },
     equals:function(){
         var sum = this.calculator(this.number1,this.number2,this.operator);
@@ -155,19 +155,19 @@ var objCalculator = {
     calculator:function(number1,number2,operator){
         if(!this.isValidNumber(number1) || !number1){
             //end the function here and pass the message below.
-            objError.innerHTML = 'Number 1 must be set';
+            this.errorMessage('Number 1 must be set');
             return;
         }
         // if the operator does not equal + - * / %
         if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
             //end the function here and pass the message below.
-            objError.innerHTML = 'You need to set an operator';
+            this.errorMessage('You need to set an operator');
             return;
         }
         //if number 2 is not a number
         if(!this.isValidNumber(number2) || !number2){
             //end the function here and pass the message below.
-            objError.innerHTML = 'Number 2 must be set';
+            this.errorMessage('Number 2 must be set');
             return;
         }
         //all fo the validation has passed so we need to do maths
@@ -192,6 +192,9 @@ var objCalculator = {
         }
         //return the value of the sum
         return sum;
+    },
+    errorMessage(message){
+        this.objError.innerHTML = message;
     }
 };
 objCalculator.init();
