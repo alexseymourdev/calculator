@@ -4,10 +4,10 @@ var objCalculator = {
     operator:"",
     blnEquals:false,
     init: function(){
-        this.addEventListeners();
+        this.selectElements();
         console.log(this);
     },
-    addEventListeners:function(){
+    selectElements:function(){
         this.arrNumbers = document.querySelectorAll(".number");
         this.arrOperators = document.querySelectorAll(".operator");
         this.objPreview = document.querySelector(".preview");
