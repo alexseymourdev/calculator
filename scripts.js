@@ -31,9 +31,9 @@ var objCalculator = {
             objOperator = this.arrOperators[counter];
             objOperator.addEventListener("click", this.preview);
         }
-        objClear.addEventListener("click", this.clear);
-        objEquals.addEventListener("click", this.equals);
-        objDecimal.addEventListener("click", this.preview);
+        this.objClear.addEventListener("click", this.clear);
+        this.objEquals.addEventListener("click", this.equals);
+        this.objDecimal.addEventListener("click", this.preview);
     },
     preview:function(event){
         // console.log(blnEquals);
