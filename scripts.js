@@ -87,6 +87,13 @@ var objCalculator = {
             }
         }
         this.objPreview.value = strMessage;
+    },
+    hasDecimal:function(number){
+        if(number.indexOf('.') !== -1){
+            this.objError.innerHTML = 'You can only have one decimal place per number';
+            return true;
+        }
+        return false;
     }
 };
 objCalculator.init();
