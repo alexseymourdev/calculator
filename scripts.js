@@ -133,7 +133,7 @@ var objCalculator = {
     processNumber:function(number,character){
         if(number){
             if(character == '.'){
-                if(!hasDecimal(number1)){
+                if(!this.hasDecimal(number)){
                     number += character;
                 }
             } else {
