@@ -1,3 +1,25 @@
+var objCalculator = {
+    number1:"",
+    number2:"",
+    operator:"",
+    blnEquals:false,
+    init: function(){
+        this.addEventListeners();
+        console.log(this);
+    },
+    addEventListeners:function(){
+        this.arrNumbers = document.querySelectorAll(".number");
+        this.arrOperators = document.querySelectorAll(".operator");
+        this.objPreview = document.querySelector(".preview");
+        this.objPrevious = document.querySelector(".previous");
+        this.objMaths = document.querySelector(".maths");
+        this.objClear = document.querySelector(".clear");
+        this.objEquals = document.querySelector(".equals");
+        this.objError = document.querySelector(".error");
+        this.objDecimal = document.querySelector(".decimal");
+    }
+};
+objCalculator.init();
 /*----- Global Variables -----*/
 let number1 = "", number2 = "", operator = "", blnEquals = false;
 
