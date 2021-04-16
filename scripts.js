@@ -5,6 +5,7 @@ var objCalculator = {
     blnEquals:false,
     init: function(){
         this.selectElements();
+        this.addEventListeners();
         console.log(this);
     },
     selectElements:function(){
@@ -17,6 +18,25 @@ var objCalculator = {
         this.objEquals = document.querySelector(".equals");
         this.objError = document.querySelector(".error");
         this.objDecimal = document.querySelector(".decimal");
+    },
+    addEventListeners:function(){
+        /*----- Event Listeners -----*/
+        for(counter = 0; counter < this.arrNumbers.length; counter++){
+            // console.log(arrNumbers[counter]);
+            objNumber = this.arrNumbers[counter];
+            objNumber.addEventListener("click", this.preview);
+        }
+        for(counter = 0; counter < this.arrOperators.length; counter++){
+            // console.log(arrNumbers[counter]);
+            objOperator = this.arrOperators[counter];
+            objOperator.addEventListener("click", this.preview);
+        }
+        // objClear.addEventListener("click", this.clear);
+        // objEquals.addEventListener("click", this.equals);
+        // objDecimal.addEventListener("click", this.preview);
+    },
+    preview:function(event){
+        console.log(event);
     }
 };
 objCalculator.init();
