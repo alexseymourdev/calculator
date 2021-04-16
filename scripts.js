@@ -31,9 +31,9 @@ var objCalculator = {
             objOperator = this.arrOperators[counter];
             objOperator.addEventListener("click", this.preview);
         }
-        // objClear.addEventListener("click", this.clear);
-        // objEquals.addEventListener("click", this.equals);
-        // objDecimal.addEventListener("click", this.preview);
+        objClear.addEventListener("click", this.clear);
+        objEquals.addEventListener("click", this.equals);
+        objDecimal.addEventListener("click", this.preview);
     },
     preview:function(event){
         // console.log(blnEquals);
@@ -94,6 +94,15 @@ var objCalculator = {
             return true;
         }
         return false;
+    },
+    clear:function(event){
+        this.number1 = "";
+        this.number2 = "";
+        this.operator = "";
+        this.objPrevious.value = "";
+        this.objPreview.value = "";
+        this.objMaths.value = "";
+        this.objError.innerHTML = "";
     }
 };
 objCalculator.init();
