@@ -103,6 +103,18 @@ var objCalculator = {
         this.objPreview.value = "";
         this.objMaths.value = "";
         this.objError.innerHTML = "";
+    },
+    equals:function(){
+        var sum = calculator(this.number1,this.number2,this.operator);
+        if(sum){
+            this.objMaths.value = "";
+            this.objPrevious.value = this.objPreview.value;
+            this.objPreview.value = sum;
+            this.blnEquals = true;
+            this.number1 = sum;
+            this.number2 = "";
+            this.operator = "";
+        }
     }
 };
 objCalculator.init();
