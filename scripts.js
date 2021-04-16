@@ -137,6 +137,51 @@ var objCalculator = {
     isValidNumber:function(number){
         //We are using a double negative as inNaN returns false on valid numbers
         return !isNaN(number);
+    },
+    calculator:function(number1,number2,operator){
+        // console.log(number1);
+        // console.log(number2);
+        // console.log(operator);
+        //if number1 is not a number
+        if(!isValidNumber(number1) || !number1){
+            //end the function here and pass the message below.
+            objError.innerHTML = 'Number 1 must be set';
+            return;
+        }
+        // if the operator does not equal + - * / %
+        if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
+            //end the function here and pass the message below.
+            objError.innerHTML = 'You need to set an operator';
+            return;
+        }
+        //if number 2 is not a number
+        if(!isValidNumber(number2) || !number2){
+            //end the function here and pass the message below.
+            objError.innerHTML = 'Number 2 must be set';
+            return;
+        }
+        //all fo the validation has passed so we need to do maths
+        var sum;
+        //based on the operator passed in argument 3 we will do a different sum
+        switch(operator){
+            case '+':
+                sum = parseFloat(number1) + parseFloat(number2);
+            break;
+            case '-':
+                sum = number1 - number2;
+            break;
+            case '*':
+                sum = number1 * number2;
+            break;
+            case '/':
+                sum = number1 / number2;
+            break;
+            case '%':
+                sum = number1 % number2;
+            break;
+        }
+        //return the value of the sum
+        return sum;
     }
 };
 objCalculator.init();
