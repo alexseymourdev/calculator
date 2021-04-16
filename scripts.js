@@ -80,40 +80,12 @@ function preview(event){
             blnEquals = false;
         }
         if(operator){
-            if(number2){
-                if(currentItem == '.'){
-                    if(!hasDecimal(number1)){
-                        number2 += currentItem;
-                    }
-                } else {
-                    number2 += currentItem;
-                }
-            } else {
-                if(currentItem == '.'){
-                    number2 = '0.';
-                } else {
-                    number2 = currentItem;
-                }
-            }
+            number2 = processNumber(number2,currentItem);
             strMessage = number1 + ' ' + operator + ' ' + number2;
             var sum = calculator(number1,number2,operator);
             objMaths.value = sum;
         } else {
-            if(number1){
-                if(currentItem == '.'){
-                    if(!hasDecimal(number1)){
-                        number1 += currentItem;
-                    }
-                } else {
-                    number1 += currentItem;
-                }
-            } else {
-                if(currentItem == '.'){
-                    number1 = '0.';
-                } else {
-                    number1 = currentItem;
-                }
-            }
+            number1 = processNumber(number1,currentItem);
             strMessage = number1;
         }
     }
@@ -152,6 +124,24 @@ function equals(){
     }
 }
 
+function processNumber(number,character){
+    if(number){
+        if(character == '.'){
+            if(!hasDecimal(number1)){
+                number += character;
+            }
+        } else {
+            number += character;
+        }
+    } else {
+        if(character == '.'){
+            number = '0.';
+        } else {
+            number = character;
+        }
+    }
+    return number;
+}
 //Adding a validation function for the numbers
 function isValidNumber(number){
     //We are using a double negative as inNaN returns false on valid numbers
