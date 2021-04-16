@@ -69,8 +69,8 @@ var objCalculator = {
         // console.log(dataType);
         if(dataType == 'operator'){
             this.blnEquals = false;
-            if(number2){
-                this.number1 = calculator(this.number1,this.number2,this.operator);
+            if(this.number2){
+                this.number1 = this.calculator(this.number1,this.number2,this.operator);
                 this.number2 = "";
                 this.objPrevious.value = this.objPreview.value;
                 this.objMaths.value = "";
@@ -88,14 +88,14 @@ var objCalculator = {
                 this.objPrevious.value = "";
                 this.blnEquals = false;
             }
-            if(operator){
-                this.number2 = processNumber(this.number2,currentItem);
+            if(this.operator){
+                this.number2 = this.processNumber(this.number2,currentItem);
                 strMessage = this.number1 + ' ' + this.operator + ' ' + this.number2;
-                var sum = calculator(this.number1,this.number2,this.operator);
+                var sum = this.calculator(this.number1,this.number2,this.operator);
                 this.objMaths.value = sum;
             } else {
-                this.number1 = processNumber(this.number1,currentItem);
-                this.strMessage = this.number1;
+                this.number1 = this.processNumber(this.number1,currentItem);
+                strMessage = this.number1;
             }
         }
         this.objPreview.value = strMessage;
@@ -155,7 +155,7 @@ var objCalculator = {
         // console.log(number2);
         // console.log(operator);
         //if number1 is not a number
-        if(!isValidNumber(number1) || !number1){
+        if(!this.isValidNumber(number1) || !number1){
             //end the function here and pass the message below.
             objError.innerHTML = 'Number 1 must be set';
             return;
@@ -167,7 +167,7 @@ var objCalculator = {
             return;
         }
         //if number 2 is not a number
-        if(!isValidNumber(number2) || !number2){
+        if(!this.isValidNumber(number2) || !number2){
             //end the function here and pass the message below.
             objError.innerHTML = 'Number 2 must be set';
             return;
